@@ -2,24 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Primus</title>
-  <script src="/js/lib/primus.js"></script>
+  <title>Primus and ngTagsInput</title>
   <link rel="stylesheet" href="//getbootstrap.com/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.css" />
   <link rel="stylesheet" href="/css/index.css" />
 </head>
 <body>
   <div class="jumbotron">
     <div class="container">
-      <h1>Primus</h1>
+      <h1>Primus and ngTagsInput together</h1>
       <p class="lead">
-        This Primus example allows you to experiment with the API's and see how
-        all components interact with each other.
+        This example allows you to experiment with the Primus API's and see how
+        it can be integrated with ngTagsInput.
       </p>
 
       <p>
-        <a href="#" id="connect" class="btn btn-outline-inverse btn-lg">
-          connect
-        </a>
+        choose a tag:
       </p>
     </div>
   </div>
@@ -42,6 +40,9 @@
     </div>
   </form>
 
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/ng-tags-input/ng-tags-input.js"></script>
+  <script src="/js/lib/primus.js"></script>
   <script src="/js/sockets.js"></script>
 </body>
 </html>
