@@ -3,7 +3,7 @@ var primus;
 angular.module('myApp.services', []).service('sockets', function(){
   if (primus) primus.end();
 
-  primus = new Primus();
+  primus = new Primus('http://localhost:8080/primusexample/');
 
   primus.on('reconnect', function reconnect(opts) {
     console.log('reconnect', 'Reconnecting', 'We are scheduling a new reconnect attempt. This is attempt '+ opts.attempt +' and will trigger a reconnect operation in '+ opts.scheduled +' ms.');
