@@ -1,0 +1,16 @@
+{
+  "name": "Primus-and-ngTagsInput-example",
+  "description": "Just an example",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Znack/primus-example.git"
+  },
+  "author": "znack",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "argh": "^0.1.4",
+    "primus": "^3.2.3",
+    "ws": "^0.8.0"
+  }
+}
