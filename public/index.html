@@ -17,13 +17,12 @@
       </p>
 
       <p>
-        choose a tag:
+        Choose a tag (start typing "T"):
+        <tags-input ng-model="chosenTags" display-property="name">
+          <auto-complete min-length="1" source="loadTags($query)"></auto-complete>
+        </tags-input>
       </p>
     </div>
-  </div>
-
-  <div id="output">
-    {{socketState.online}}
   </div>
 
 
