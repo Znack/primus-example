@@ -14,19 +14,21 @@ var argh = require('argh').argv
   , Primus = require('primus')
   , http = require('http')
   , fs = require('fs')
+  , staticServer = require('node-static')
+  , port = +argh.port || 8080
   , server
   , primus;
 
+var file = new staticServer.Server('./public');
 
 //
 // Create a basic server that will send the compiled library or a basic HTML
 // file which we can use for testing.
 //
 server = http.createServer(function server(req, res) {
-  res.setHeader('Content-Type', 'text/html');
-  fs.createReadStream(
-    __dirname + (~req.url.indexOf('primus.js') ? '/public/primus.js' : '/public/index.html')
-  ).pipe(res);
+  req.addListener('end', function () {
+      file.serve(req, res);
+  }).resume();
 });
 
 //
@@ -70,12 +72,8 @@ primus.on('connection', function connection(spark) {
 });
 
 //
-// Save the compiled file to the hard disk so it can also be distributed over
-// cdn's or just be served by something else than the build-in path.
-//
-primus.save('public/primus.js');
-
-//
 // Everything is ready, listen to a port number to start the server.
 //
-server.listen(+argh.port || 8080);
+server.listen(port, function(){
+  console.info('Server is listening on ' + port)
+});

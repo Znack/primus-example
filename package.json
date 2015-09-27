@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "argh": "^0.1.4",
+    "node-static": "^0.7.7",
     "primus": "^3.2.3",
     "ws": "^0.8.0"
   }
