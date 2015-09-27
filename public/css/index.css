@@ -1,5 +1,5 @@
 
-.jumbotron { background: #73146E; color: #FFF }
+.jumbotron { background: #73146E; color: #FFF; padding: 30px }
   .jumbotron h1 { font-size: 100px }
   .jumbotron .lead { color: rgba(255, 255, 255, .8) }
 

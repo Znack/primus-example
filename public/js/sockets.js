@@ -9,18 +9,6 @@ angular.module('myApp.services', []).service('sockets', function(){
     console.log('reconnect', 'Reconnecting', 'We are scheduling a new reconnect attempt. This is attempt '+ opts.attempt +' and will trigger a reconnect operation in '+ opts.scheduled +' ms.');
   });
 
-  primus.on('reconnect', function reconnect() {
-    console.log('reconnect', 'Reconnect', 'Starting the reconnect attempt, hopefully we get a connection!');
-  });
-
-  primus.on('online', function online() {
-    console.log('network', 'Online', 'We have regained control over our internet connection.');
-  });
-
-  primus.on('offline', function offline() {
-    console.log('network', 'Offline', 'We lost our internet connection.');
-  });
-
   primus.on('open', function open() {
     console.log('open', 'Open', 'The connection has been established.');
   });

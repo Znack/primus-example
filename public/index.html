@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Primus and ngTagsInput</title>
-  <link rel="stylesheet" href="//getbootstrap.com/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="http://localhost:8080/bower_components/ng-tags-input/ng-tags-input.css" />
   <link rel="stylesheet" href="http://localhost:8080/css/index.css" />
 </head>
@@ -21,6 +21,15 @@
         <tags-input ng-model="chosenTags" display-property="name">
           <auto-complete min-length="1" source="loadTags($query)"></auto-complete>
         </tags-input>
+      </p>
+    </div>
+  </div>
+
+  <div class="output panel panel-primary">
+    <div class="panel-body">
+      <p ng-repeat="event in socketEvents">
+        <span class="label label-default" ng-bind="::event.name"></span>
+        <span ng-bind="::event.text"></span>
       </p>
     </div>
   </div>

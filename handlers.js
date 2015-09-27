@@ -18,7 +18,11 @@ module.exports = function(server) {
     spark.on('data', function data(packet) {
       if (!packet) return;
 
-      console.log('incoming:', packet);
+      if (packet.action === 'tags.new') {
+        console.log('New tag was sent to server');
+
+        spark.write({action: 'tags.new.saved', tags: packet.data});
+      }
 
 
     });

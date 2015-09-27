@@ -12,6 +12,7 @@ angular.module('myApp').controller('mainController', function($scope, sockets){
     { "id": 10, "name": "Tag10" }
   ];
 
+  $scope.socketEvents = [];
   $scope.chosenTags = [{ "id": 1, "name": "Tag1" },];
 
   $scope.loadTags = function(query) {
@@ -19,6 +20,23 @@ angular.module('myApp').controller('mainController', function($scope, sockets){
   };
 
   $scope.$watchCollection('chosenTags', function watcher(oldValue, newValue) {
-    sockets.write({action: 'NEW_TAGS', data: $scope.chosenTags})
-  })
+    sockets.write({action: 'tags.new', data: $scope.chosenTags})
+  });
+
+  sockets.on('reconnect', function reconnect(opts) {
+    $scope.socketEvents.push({name: 'reconnect', text: 'We are scheduling a new reconnect attempt. This is attempt '+ opts.attempt +' and will trigger a reconnect operation in '+ opts.scheduled +' ms.'});
+  });
+
+  sockets.on('open', function open() {
+    $scope.socketEvents.push({name: 'open', text: 'The connection has been established.'});
+  });
+
+  sockets.on('data', function open(data) {
+    if (data.action === 'tags.new.saved') {
+      $scope.socketEvents.push({name: 'tags.new.saved', text: 'Your new tag array was saved with ids ' + data.tags.map(function(tag){
+        return tag.id
+      })});
+    }
+  });
+
 });
