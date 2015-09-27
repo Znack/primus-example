@@ -18,9 +18,7 @@ angular.module('myApp').controller('mainController', function($scope, sockets){
     return $scope.tags;
   };
 
-  $scope.$watch('chosenTags', function watcher(oldValue, newValue) {
-    if (oldValue.length !== newValue.length) {
-      sockets.write({action: 'NEW_TAGS', data: $scope.chosenTags})
-    }
+  $scope.$watchCollection('chosenTags', function watcher(oldValue, newValue) {
+    sockets.write({action: 'NEW_TAGS', data: $scope.chosenTags})
   })
 });
